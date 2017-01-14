@@ -9,11 +9,20 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityToggleGlideEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.scheduler.BukkitRunnable;
 
 public class Events implements Listener {
     private NoElytra plugin;
-    public Events(NoElytra noelytra) {
+    Events(NoElytra noelytra) {
         this.plugin = noelytra;
+
+        new BukkitRunnable(){
+            public void run(){
+                for(Player p : plugin.getServer().getOnlinePlayers()){
+                    dequipElytra(p);
+                }
+            }
+        }.runTaskTimer(plugin, 20 * 5, 20 * 5);
     }
 
     @EventHandler
