@@ -18,14 +18,15 @@ public class Events implements Listener {
 
     @EventHandler
     public void onGlide(EntityToggleGlideEvent event) {
-        if (event.getEntity().getType().equals(EntityType.PLAYER)) {
+        if (event.getEntity().getType().equals(EntityType.PLAYER))
             dequipElytra((Player) event.getEntity());
-        }
     }
 
     private void dequipElytra(Player player) {
         PlayerInventory i = player.getInventory();
-        if (i.getChestplate().getType().equals(Material.ELYTRA)) {
+        if (!i.getChestplate().getType().equals(Material.ELYTRA))
+            return;
+        
             i.setChestplate(null);
 
             ItemStack elytra = new ItemStack(Material.ELYTRA, 1);
@@ -34,10 +35,9 @@ public class Events implements Listener {
             // inventory full?
             if (i.firstEmpty() > 0) {
                 i.addItem(elytra);
-            } else {
+            } else 
                 l.getWorld().dropItemNaturally(l, elytra);
-            }
             player.updateInventory();
-        }
+        
     }
 }
