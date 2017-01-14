@@ -18,9 +18,8 @@ public class Events implements Listener {
 
         new BukkitRunnable(){
             public void run(){
-                for(Player p : plugin.getServer().getOnlinePlayers()){
+                for(Player p : plugin.getServer().getOnlinePlayers())
                     dequipElytra(p);
-                }
             }
         }.runTaskTimer(plugin, 20 * 5, 20 * 5);
     }
@@ -42,9 +41,9 @@ public class Events implements Listener {
             Location       l = i.getLocation();
 
             // inventory full?
-            if (i.firstEmpty() > 0) {
+            if (i.firstEmpty() > 0)
                 i.addItem(elytra);
-            } else 
+            else 
                 l.getWorld().dropItemNaturally(l, elytra);
             player.updateInventory();
         
