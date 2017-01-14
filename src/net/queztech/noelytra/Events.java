@@ -41,11 +41,11 @@ public class Events implements Listener {
             Location       l = i.getLocation();
 
             // inventory full?
-            if (i.firstEmpty() > 0)
+            if (i.firstEmpty() != -1) {
                 i.addItem(elytra);
-            else 
+            } else {
                 l.getWorld().dropItemNaturally(l, elytra);
-            player.updateInventory();
-        
+                player.updateInventory();
+            }
     }
 }
