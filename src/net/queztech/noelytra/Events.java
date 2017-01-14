@@ -32,7 +32,7 @@ public class Events implements Listener {
 
     private void dequipElytra(Player player) {
         PlayerInventory i = player.getInventory();
-        if (!( (i.getChestplate() != null) && i.getChestplate().getType().equals(Material.ELYTRA) )
+        if (!( (i.getChestplate() != null) && i.getChestplate().getType().equals(Material.ELYTRA) ))
             return;
         
             i.setChestplate(null);
