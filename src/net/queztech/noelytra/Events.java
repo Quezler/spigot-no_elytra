@@ -34,16 +34,15 @@ public class Events implements Listener {
         PlayerInventory i = player.getInventory();
         if (!( (i.getChestplate() != null) && i.getChestplate().getType().equals(Material.ELYTRA) ))
             return;
-        
-            i.setChestplate(null);
 
-            ItemStack elytra = new ItemStack(Material.ELYTRA, 1);
-            Location       l = i.getLocation();
+            ItemStack elytra = i.getChestplate();
+            i.setChestplate(null);
 
             // inventory full?
             if (i.firstEmpty() != -1) {
                 i.addItem(elytra);
             } else {
+                Location l = i.getLocation();
                 l.getWorld().dropItemNaturally(l, elytra);
                 player.updateInventory();
             }
